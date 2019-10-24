@@ -1,0 +1,19 @@
+#!/bin/bash
+
+SHARE_DIR=/opt/share
+
+if [ ! -d "${SHARE_DIR}/applications" ]; then
+    sudo mkdir -p "${SHARE_DIR}/applications" 2>/dev/null
+fi
+
+if [ ! -d "${SHARE_DIR}/bin" ]; then
+    sudo mkdir -p "${SHARE_DIR}/bin" 2>/dev/null
+fi
+
+if [ ! -d "${HOME}/.local/share/applications" ]; then
+    mkdir -p "${HOME}/.local/share/applications" 2>/dev/null
+fi
+
+if [ ! -f $HOME/.bash_aliases ]; then
+    touch $HOME/.bash_aliases
+fi

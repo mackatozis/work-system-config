@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Basic config
+echo
+echo ">> Configuring gnome3..."
+
+# Appearance
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gtk/ShellShowsAppMenu': <0>}"
+gsettings set org.gnome.desktop.interface clock-show-date true
+gsettings set org.gnome.desktop.calendar show-weekdate true
+gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Comfortaa Bold 11'
+gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
+gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
+
+# performance optimization
+gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Nautilus.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Boxes.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Software.desktop', 'org.gnome.Terminal.desktop']"
+gsettings set org.gnome.desktop.interface enable-animations false
+
+# Configure gnome-shell-extension: dash-to-dock
+gsettings set org.gnome.shell.extensions.dash-to-dock extend-height true
+gsettings set org.gnome.shell.extensions.dash-to-dock icon-size-fixed true
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
+gsettings set org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
+gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-shrink true
+gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-customize-running-dots true
+gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-border-width 0
+gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-color '#ffffff'
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-overview'
+gsettings set org.gnome.shell.extensions.dash-to-dock shift-click-action 'launch'
+
+# Add Create new doc option
+touch ~/Templates/"Untitled Document"
+
+# Ctr+Alt+t --> gnome-terminal
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-terminal/ name "'open-terminal'"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-terminal/ binding "'<Control><Alt>t'"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/open-terminal/ command "'gnome-terminal'"
+
+# Switch between layouts with Ctrl + Shift
+gsettings set org.gnome.desktop.input-sources xkb-options "['grp:ctrl_shift_toggle']"
+
+# Disable ALT - F1
+gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]"

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <pluginGroups>
+  </pluginGroups>
+
+  <proxies>
+  </proxies>
+
+  <servers>
+
+		<server>
+			<id>internal-upstream</id>
+			<username>deployer</username>
+			<password>deployer</password>
+		</server>
+
+		<server>
+			<id>internal-repo</id>
+			<username>deployer</username>
+			<password>deployer</password>
+		</server>
+
+		<server>
+			<id>curry-production</id>
+			<username>deployer</username>
+			<password>deployer</password>
+		</server>
+
+		<server>
+			<id>curry-lab</id>
+			<username>deployer</username>
+			<password>deployer</password>
+		</server>
+
+		<server>
+			<id>curry-test</id>
+			<username>deployer</username>
+			<password>deployer</password>
+		</server>
+
+		<server>
+			<id>curry-dev</id>
+			<username>deployer</username>
+			<password>deployer</password>
+		</server>
+
+	</servers>
+
+  <mirrors>
+   </mirrors>
+  
+   <profiles>
+	<profile>
+		<id>internal-repo</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+		<repositories>
+				<repository>
+					<id>central</id>
+					<url>http://artifactory.uplab.in:8080/artifactory/repo</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>snapshots</id>
+					<url>http://artifactory.uplab.in:8080/artifactory/repo</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+				</repository>
+				<repository>
+					<id>internal-upstream</id>
+					<url>http://artifactory.uplab.in:8080/artifactory/internal-upstream</url>
+				</repository>
+			</repositories>
+
+			<pluginRepositories>
+				<pluginRepository>
+					<id>central</id>
+					<name>Maven Plugin Repository</name>
+					<url>http://repo1.maven.org/maven2</url>
+					<layout>default</layout>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<releases>
+						<updatePolicy>never</updatePolicy>
+					</releases>
+				</pluginRepository>
+				<pluginRepository>
+					<id>codehaus-plugin-repo</id>
+					<name>Codehaus Repository</name>
+					<url>http://repository.codehaus.org</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>plugin-snapshot</id>
+					<url>http://artifactory.uplab.in:8080/artifactory/plugin-snapshot</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+				</pluginRepository>
+				<pluginRepository>
+					<id>plugin-release</id>
+					<url>http://artifactory.uplab.in:8080/artifactory/plugin-release</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</pluginRepository>
+				<pluginRepository>
+					<id>internal-upstream-snapshots</id>
+					<url>http://artifactory.uplab.in:8080/artifactory/internal-upstream</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+				</pluginRepository>
+				<pluginRepository>
+					<id>internal-upstream-releases</id>
+					<url>http://artifactory.uplab.in:8080/artifactory/internal-upstream</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</pluginRepository>
+				<pluginRepository>
+					<id>internal-3rd-party-snapshots</id>
+					<url>http://artifactory.uplab.in:8080/artifactory/internal-3rd-party</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+				</pluginRepository>
+				<pluginRepository>
+					<id>internal-3rd-party-releases</id>
+					<url>http://artifactory.uplab.in:8080/artifactory/internal-3rd-party</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</pluginRepository>
+			</pluginRepositories>
+	</profile>
+  </profiles>
+
+</settings>
+

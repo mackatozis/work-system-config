@@ -1,0 +1,23 @@
+#!/bin/bash
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+KUBE_VERSION=${KUBE_VERSION:-'v1.9.0'}
+TMP_DIR=${HOME}/.cache/install-kubectl-latest
+
+# download
+mkdir "$TMP_DIR" 2>/dev/null
+cd "$TMP_DIR"
+echo
+if [ ! -r kubectl-${KUBE_VERSION} ]; then
+  echo ">> Downloading kubectl-${KUBE_VERSION}..."
+  curl -s https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -o kubectl-${KUBE_VERSION}
+fi
+
+# install
+echo ">> Installing kubectl..."
+sudo chmod +x ${TMP_DIR}/kubectl-${KUBE_VERSION}
+sudo mv ${TMP_DIR}/kubectl-${KUBE_VERSION} /usr/local/bin/kubectl
+
+# cleanup
+rm -rf ${TMP_DIR}

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+cd "$WD"
+
+bash config/prerequisites.bsh
+bash config/gnome3.bsh
+
+bash install/apps.bsh
+bash install/docker.bsh
+bash install/kubectl.bsh
+bash install/helm.bsh
+bash install/kubectx.bsh
+bash install/java-maven.bsh
+bash install/jetbrains-toolbox.bsh
+bash install/tomcat.bsh
+bash install/jmeter.bsh
+bash install/wiremock.bsh
+bash install/slack.bsh

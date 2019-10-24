@@ -1,0 +1,23 @@
+#!/bin/bash
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+JETBRAINS_TOOLBOX_VERSION=${JETBRAINS_TOOLBOX_VERSION:-'1.16.6016'}
+TMP_DIR=${HOME}/.cache/install-jetbrains-toolbox-latest
+
+# download
+mkdir "$TMP_DIR" 2>/dev/null
+cd "$TMP_DIR"
+echo
+if [ ! -r jetbrains-toolbox-${JETBRAINS_TOOLBOX_VERSION}.tar.gz ]; then
+  echo ">> Downloading jetbrains-toolbox-${JETBRAINS_TOOLBOX_VERSION}..."
+  wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-${JETBRAINS_TOOLBOX_VERSION}.tar.gz -O jetbrains-toolbox-${JETBRAINS_TOOLBOX_VERSION}.tar.gz
+fi
+
+# install
+echo ">> Installing jetbrains-toolbox..."
+tar xvf jetbrains-toolbox-${JETBRAINS_TOOLBOX_VERSION}.tar.gz
+sudo chmod +x ${TMP_DIR}/jetbrains-toolbox-${JETBRAINS_TOOLBOX_VERSION}/jetbrains-toolbox
+sudo mv ${TMP_DIR}/jetbrains-toolbox-${JETBRAINS_TOOLBOX_VERSION}/jetbrains-toolbox /usr/local/bin/jetbrains-toolbox
+
+# cleanup
+rm -rf ${TMP_DIR}

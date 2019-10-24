@@ -1,0 +1,29 @@
+#!/bin/bash
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WIREMOCK_VERSION=$(curl -s http://wiremock.org/docs/download-and-installation/ | grep -Po '(\d+\.)+\d+' | tail -n 1)
+INST_DIR=/opt/wiremock
+TMP_DIR=${HOME}/.cache/install-wiremock-latest
+
+# download
+mkdir "$TMP_DIR" 2>/dev/null
+cd "$TMP_DIR"
+echo
+if [ ! -r wiremock-${WIREMOCK_VERSION}.jar ]; then
+  echo ">> Downloading wiremock-${WIREMOCK_VERSION}..."
+  curl -s http://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-standalone/${WIREMOCK_VERSION}/wiremock-standalone-${WIREMOCK_VERSION}.jar -o wiremock-${WIREMOCK}.jar
+fi
+
+# install
+echo ">> Installing wiremock..."
+sudo rm -rf ${INST_DIR}
+sudo mkdir -p ${INST_DIR}
+sudo chmod +x ${TMP_DIR}/wiremock-${WIREMOCK}.jar
+sudo mv ${TMP_DIR}/wiremock-${WIREMOCK}.jar ${INST_DIR}/wiremock.jar
+
+# add alias
+grep -qF -- "alias wiremock='java -jar $INST_DIR/wiremock.jar --port 9000'" ~/.bash_aliases || echo "alias wiremock='java -jar $INST_DIR/wiremock.jar --port 9000'" | tee -a ~/.bash_aliases
+source ~/.bashrc
+
+# cleanup
+rm -rf ${TMP_DIR}

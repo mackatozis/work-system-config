@@ -1,0 +1,28 @@
+#!/bin/bash
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TOMCAT_VERSION=${TOMCAT_VERSION:-'8.5.47'}
+INST_DIR=/opt/apache-tomcat
+TMP_DIR=${HOME}/.cache/install-apache-tomcat-latest
+
+# download
+mkdir "$TMP_DIR" 2>/dev/null
+cd "$TMP_DIR"
+echo
+if [ ! -r apache-tomcat-${TOMCAT_VERSION}.tar.gz ]; then
+  echo ">> Downloading tomcat-${TOMCAT_VERSION}..."
+  curl -s https://www-eu.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -o apache-tomcat-${TOMCAT_VERSION}.tar.gz
+fi
+
+# install
+echo ">> Installing apache-tomcat..."
+sudo rm -rf ${INST_DIR}
+sudo mkdir -p ${INST_DIR}
+sudo tar xf apache-tomcat-${TOMCAT_VERSION}.tar.gz -C ${INST_DIR}
+sudo ln -s ${INST_DIR}/apache-tomcat-${TOMCAT_VERSION} ${INST_DIR}/latest
+sudo chown -RH $USER: ${INST_DIR}/latest
+sudo sh -c 'chmod -R +rw /opt/apache-tomcat/latest/'
+sudo sh -c 'chmod +x /opt/apache-tomcat/latest/bin/*.sh'
+
+# cleanup
+rm -rf ${TMP_DIR}

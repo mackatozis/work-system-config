@@ -1,0 +1,17 @@
+#!/bin/bash
+
+sudo apt update
+sudo apt install -y htop curl xclip git net-tools pwgen \
+pkg-config translate-shell bash-completion
+sudo apt install -y pkgconf
+sudo snap install brave
+
+# verify that bash-completion is correctly installed
+type _init_completion
+if [ $? -ne 0 ]; then
+    source /usr/share/bash-completion/bash_completion
+fi
+
+# add alias
+grep -qF -- "alias cpath='pwd | tr -d \"\n\" | xclip'" ~/.bash_aliases || echo "alias cpath='pwd | tr -d \"\n\" | xclip'" | tee -a ~/.bash_aliases
+source ~/.bashrc

@@ -1,0 +1,49 @@
+#!/bin/bash
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+JMETER_VERSION=${JMETER_VERSION:-'5.1.1'}
+INST_DIR=/opt/apache-jmeter
+TMP_DIR=${HOME}/.cache/install-apache-jmeter
+SHARE_DIR=/opt/share
+
+# download
+mkdir "$TMP_DIR" 2>/dev/null
+cd "$TMP_DIR"
+echo
+if [ ! -r apache-jmeter-${JMETER_VERSION} ]; then
+  echo ">> Downloading apache-jmeter-${JMETER_VERSION}..."
+  curl -s https://www-eu.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz -o apache-jmeter-${JMETER_VERSION}.tgz
+fi
+
+# install
+echo ">> Installing apache-jmeter..."
+sudo rm -rf ${INST_DIR}
+sudo mkdir -p ${INST_DIR}
+tar zxvf apache-jmeter-${JMETER_VERSION}.tgz >/dev/null
+sudo cp -R ${TMP_DIR}/apache-jmeter-${JMETER_VERSION}/. ${INST_DIR}/
+sudo chmod +x ${INST_DIR}/bin/jmeter
+
+sudo cp ${WD}/../_resources/jmeter /usr/local/bin/jmeter
+sudo chmod +x /usr/local/bin/jmeter
+
+# add desktop
+sudo bash -c "cat > '${SHARE_DIR}/applications/jmeter.desktop' <<EOF
+[Desktop Entry]
+Name=Apache JMeter
+GenericName=Apache JMeter
+X-GNOME-FullName=Apache JMeter Load Testing Tool
+Comment=A load testing tool
+Keywords=apache;jmeter;test
+Exec=/usr/local/bin/jmeter
+Path=/usr/local/bin/
+Terminal=false
+Type=Application
+Icon=${INST_DIR}/docs/images/jmeter_square.png
+Categories=Development;Utilities;
+EOF"
+
+ln -sf "${SHARE_DIR}/applications/jmeter.desktop" "${HOME}/.local/share/applications/jmeter.desktop"
+
+# cleanup
+rm -rf ${TMP_DIR}

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo ">> Removing docker from apt..."
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+DOCKER_INST="$(mktemp)-get-docker.sh"
+curl -fsSL get.docker.com -o ${DOCKER_INST}
+sudo sh ${DOCKER_INST}
+
+sudo usermod -aG docker ${USER}
+
+rm ${DOCKER_INST}

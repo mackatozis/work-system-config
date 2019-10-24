@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -x
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [ ! -x "$(command -v kubectl)" ]; then
+    bash "$WD/kubectl.bsh"
+fi
+
+helmVersion="v2.8.1"
+
+echo
+echo ">> Installing kubernetes/helm..."
+sudo rm -rf /opt/kube-helm/
+sudo mkdir -p /opt/kube-helm/
+cd /opt/kube-helm/
+
+sudo curl -sLO "https://kubernetes-helm.storage.googleapis.com/helm-${helmVersion}-linux-amd64.tar.gz"
+sudo tar --strip-components=1 -xf "helm-${helmVersion}-linux-amd64.tar.gz" "linux-amd64"
+
+sudo chmod +x ./helm
+sudo ln -sf /opt/kube-helm/helm /usr/local/bin/helm

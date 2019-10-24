@@ -1,0 +1,27 @@
+#!/bin/bash
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo ">> Checking for sdkman installation..."
+[ -r "$HOME/.sdkman/bin/sdkman-init.sh" ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk version >/dev/null 2>&1
+[ $? -ne 0 ] && curl -s "https://get.sdkman.io" | bash
+
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+JAVA_8_VERSION=$(sdk list java | grep "8.*hs-adpt" | awk '{print $NF}')
+sdk install java $JAVA_8_VERSION
+
+JAVA_11_VERSION=$(sdk list java | grep "11.*hs-adpt" | awk '{print $NF}')
+sdk install java $JAVA_11_VERSION
+
+sdk default java $JAVA_8_VERSION
+
+MAVEN_3_VERSION=$(sdk list maven | cut -c 6- | egrep '^3' | sort -V | tail -1)
+sdk install maven $MAVEN_3_VERSION -y
+
+#Add Upstream's settings.xml in m2 folder
+if [ ! -d "$HOME/.m2" ]; then
+    mkdir $HOME/.m2
+fi
+cp ${WD}/../_resources/maven_settings.xml ${HOME}/.m2/settings.xml
