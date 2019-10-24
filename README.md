@@ -2,7 +2,7 @@
 
 ![Proudly written in Bash](https://img.shields.io/badge/written%20in-bash-ff69b4.svg) ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg) ![GitHub license](https://img.shields.io/badge/license-Apache%20License%20v2.0-brightgreen)
 
-This is a collection of idempotent scripts I used configure my system at work.
+This is a collection of idempotent scripts I use to configure my system for work.
 
 **Requirements:** Ubuntu 18.04+
 
