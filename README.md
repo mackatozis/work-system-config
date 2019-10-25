@@ -26,7 +26,6 @@ The following programs / libraries will be installed on your system:
 * **[Kubectx](https://github.com/ahmetb/kubectx)** - Switch faster between clusters and namespaces in kubectl
 * **Slack**
 * **[Brave Browser](https://brave.com/)**
-  - Some useful bookmarks will automatically be imported
 
 Also, there are some custom modifications for Gnome, which can be found at
 
