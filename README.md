@@ -39,7 +39,7 @@ To clone and run this set of scripts, you'll need [Git](https://git-scm.com) ins
 
 ```bash
 # Clone this repository and include all the submodules
-$ git clone --recurse-submodules -j8 git@gitlab.internal.upstreamsystems.com:zerod/upstream-system-config.git
+$ git clone --recurse-submodules -j8 git@github.com:mackatozis/work-system-config.git
 
 # Go into the repository
 $ cd upstream-system-config
