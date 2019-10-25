@@ -1,6 +1,6 @@
-# Work System Config 🚀
+# Upstream System Config 🚀
 
-![Proudly written in Bash](https://img.shields.io/badge/written%20in-bash-ff69b4.svg) ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg) ![GitHub license](https://img.shields.io/badge/license-Apache%20License%20v2.0-brightgreen)
+![Proudly written in Bash](https://img.shields.io/badge/written%20in-bash-ff69b4.svg) ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
 
 This is a collection of idempotent scripts I use to configure my system for work.
 
@@ -10,7 +10,8 @@ This is a collection of idempotent scripts I use to configure my system for work
 
 The following programs / libraries will be installed on your system:
 * **[SDKMAN](https://sdkman.io/)** - This a tool for managing parallel versions of multiple **Software Development Kits**
-  -  Used to install Java 8, 11 and Maven 3
+  - Used to install Java 8, 11 and Maven 3
+  - Used to switch between JDK 8/JDK 11
 * **[Jetbrains Toolbox](https://www.jetbrains.com/toolbox-app/)** - Helps you to manage your JetBrains tools (*e.g. Intellij-IDEA*)
   - Install
   - Update automatically
@@ -25,6 +26,7 @@ The following programs / libraries will be installed on your system:
 * **[Kubectx](https://github.com/ahmetb/kubectx)** - Switch faster between clusters and namespaces in kubectl
 * **Slack**
 * **[Brave Browser](https://brave.com/)**
+  - Some useful bookmarks will automatically be imported
 
 Also, there are some custom modifications for Gnome, which can be found at
 
@@ -37,8 +39,8 @@ config/gnome3.bsh
 To clone and run this set of scripts, you'll need [Git](https://git-scm.com) installed on your computer. From your command line:
 
 ```bash
-# Clone this repository and include the kubectx submodule
-$ git clone --recurse-submodules -j8 git@gitlab.internal.upstreamsystems.com:a.efthymiadis/upstream-system-config.git
+# Clone this repository and include all the submodules
+$ git clone --recurse-submodules -j8 git@gitlab.internal.upstreamsystems.com:zerod/upstream-system-config.git
 
 # Go into the repository
 $ cd upstream-system-config
