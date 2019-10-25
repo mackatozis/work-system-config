@@ -18,3 +18,4 @@ bash install/tomcat.bsh
 bash install/jmeter.bsh
 bash install/wiremock.bsh
 bash install/slack.bsh
+bash install/brave.bsh

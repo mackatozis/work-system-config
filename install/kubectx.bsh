@@ -1,6 +1,7 @@
 #!/bin/bash
 
 INST_DIR=/opt/kubectx
+USR_LOCAL_BIN_DIR=/usr/local/bin
 
 WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -13,7 +14,7 @@ sudo cp $WD/../_libs/kubectx/kubens ${INST_DIR}/
 sudo chmod +x ${INST_DIR}/kubectx
 sudo chmod +x ${INST_DIR}/kubens
 
-sudo ln -sf ${INST_DIR}/kubectx /usr/local/bin/kubectx
-sudo ln -sf ${INST_DIR}/kubens /usr/local/bin/kubens
+sudo ln -sf ${INST_DIR}/kubectx ${USR_LOCAL_BIN_DIR}/kubectx
+sudo ln -sf ${INST_DIR}/kubens ${USR_LOCAL_BIN_DIR}/kubens
 
 sudo cp $WD/../_libs/kubectx/completion/kubectx.bash /etc/bash_completion.d/kubectx

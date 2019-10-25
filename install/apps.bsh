@@ -4,7 +4,6 @@ sudo apt update
 sudo apt install -y htop curl xclip git net-tools pwgen \
 pkg-config translate-shell bash-completion
 sudo apt install -y pkgconf
-sudo snap install brave
 
 # verify that bash-completion is correctly installed
 type _init_completion

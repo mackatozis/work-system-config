@@ -22,7 +22,7 @@ sudo chmod +x ${TMP_DIR}/wiremock-${WIREMOCK}.jar
 sudo mv ${TMP_DIR}/wiremock-${WIREMOCK}.jar ${INST_DIR}/wiremock.jar
 
 # add alias
-grep -qF -- "alias wiremock='java -jar $INST_DIR/wiremock.jar --port 9000'" ~/.bash_aliases || echo "alias wiremock='java -jar $INST_DIR/wiremock.jar --port 9000'" | tee -a ~/.bash_aliases
+grep -qF -- "alias wiremock='java -jar $INST_DIR/wiremock.jar --port 9991'" ~/.bash_aliases || echo "alias wiremock='java -jar $INST_DIR/wiremock.jar --port 9991'" | tee -a ~/.bash_aliases
 source ~/.bashrc
 
 # cleanup
